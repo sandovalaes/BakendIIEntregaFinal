@@ -1,0 +1,59 @@
+.site-footer {
+    background-color: rgba(182, 223, 17, 0.8);
+    /* Negro semi-difuminado */
+    color: #fff;
+    /* Letras blancas */
+    margin-top: 3em;
+    margin-bottom: 1em;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    /* Línea blanca sutil en la parte superior */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    position: relative;
+    /* Posición relativa para los efectos de línea */
+    padding: 5px 0;
+}
+
+.footer-links a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+.footer-links a:hover {
+    text-decoration: none;
+    color: #f0f0f0;
+    /* Color de texto ligeramente más claro al pasar el ratón */
+}

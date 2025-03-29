@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Yerba Mate",
+    "description": "El más rico",
+    "price": "1500",
+    "status": true,
+    "code": "abc123",
+    "stock": 150,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/308973-1200-auto?v=638599350764530000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Leche",
+    "description": "Leche entera",
+    "price": "800",
+    "status": true,
+    "code": "ghi789",
+    "stock": 100,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/343521-1200-auto?v=638732575294370000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Arroz",
+    "description": "Arroz blanco",
+    "price": "1200",
+    "status": true,
+    "code": "jkl012",
+    "stock": 80,
+    "category": " ",
+    "thumbnail": "https://jumboargentina.vtexassets.com/arquivos/ids/625788-1200-auto?v=637528440071470000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Azúcar",
+    "description": "Azúcar blanca",
+    "price": "500",
+    "status": true,
+    "code": "mno345",
+    "stock": 120,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/340849-1200-auto?v=638706305495930000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Café",
+    "description": "Café molido",
+    "price": "2500",
+    "status": true,
+    "code": "pqr678",
+    "stock": 50,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/345968-1200-auto?v=638750367620000000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Jabón Liquido",
+    "description": "Jabón Liquido",
+    "price": "700",
+    "status": true,
+    "code": "stu901",
+    "stock": 150,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/330018-1200-auto?v=638599643388530000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Yogur",
+    "description": "Yogur Milkaut",
+    "price": "600",
+    "status": true,
+    "code": "vwx234",
+    "stock": 90,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/339727-1200-auto?v=638689887569630000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Aceite",
+    "description": "Aceite de oliva",
+    "price": "2000",
+    "status": true,
+    "code": "yzw567",
+    "stock": 70,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/339766-1200-auto?v=638689888028230000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Papel higiénico",
+    "description": "Papel higiénico suave",
+    "price": "1500",
+    "status": true,
+    "code": "abc890",
+    "stock": 120,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/307575-1200-auto?v=638599331940930000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Manteca",
+    "description": "Manteca La serenisima",
+    "price": 1000,
+    "status": true,
+    "code": "man500",
+    "stock": 300,
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/343490-1200-auto?v=638732574938170000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Cerveza Ipa Imperial ",
+    "description": "lata 473 Ml",
+    "price": "1500",
+    "status": true,
+    "code": "ceripa",
+    "stock": "125",
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/318688-1200-auto?v=638599493114130000&width=1200&height=auto&aspect=true"
+  },
+  {
+    "title": "Galletitas Oreo",
+    "description": "Oreo Rellenas Con Crema",
+    "price": "2500",
+    "status": true,
+    "code": "galore",
+    "stock": "150",
+    "category": " ",
+    "thumbnail": "https://ardiaprod.vtexassets.com/arquivos/ids/321507-1200-auto?v=638599531878830000&width=1200&height=auto&aspect=true"
+  }
+]

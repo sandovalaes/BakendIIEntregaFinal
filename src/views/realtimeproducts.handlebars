@@ -1,0 +1,132 @@
+<div class="container mt-5">
+    <!-- Botón flotante "Back" -->
+    <a href="http://localhost:8081/" class="btn btn-info">Volver al inicio</a>
+    <h1 class="text-center mb-4">NUESTROS PRODUCTOS (RealTime)</h1>
+    <div class ="row row-cols-1 row-cols-md-2 row-cols-lg-3" id="contenedorProductos">
+        <!-- Los productos serán insertados aquí por el JavaScript -->
+    </div>
+
+    <div class="mt-4">
+        {{#if prevLink}}
+        <a href={{prevLink}} class="btn btn-primary mb-4">Página anterior</a>
+        {{/if}}
+        {{#if nextLink}}
+        <a href={{nextLink}} class="btn btn-primary ml-2 mb-4">Página siguiente</a>
+        {{/if}}
+    </div>
+    <!-- Botón GET BACK STOCK 
+    <div id="importStockContainer" style="text-align: center; display: none;">
+        <button id="importStockButton">GET BACK STOCK</button>
+    </div> -->
+
+    <form class="" id="formProduct">
+
+        <div class="container" >
+            <div class="justify-content-md-center" >
+                <h2 class="col-mb-4">Alta de Producto</h2>
+                <!-- Nombre del Producto -->
+                <div class="col-md-auto">
+                    <label for="title" class="form-label">Título</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-box"></i></span>
+                        <input class="form-control" type="text" name="title" id="title" placeholder="Ej. Juego de llaves" required>
+                    </div>
+                </div>
+
+                <!-- Descripción -->
+                <div class="col-md-auto">
+                    <label for="description" class="form-label">Descripción</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-file-text"></i></span>
+                        <input class="form-control" type="text" name="description" id="description" placeholder="Ej. kit completo de llaves" required>
+                    </div>
+                </div>
+
+                
+                <!-- Precio -->
+                <div class="col-md-auto">
+                    <label for="price" class="form-label">Precio</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+                        <input class="form-control" type="number" name="price" id="price" placeholder="Ej. 1000" required>
+                    </div>
+                </div>
+
+                <!-- Estado (Checkbox) -->
+                <div class="col-md-auto">
+                    <div class="form-check mt-4">
+                        <input name="status" class="form-check-input" type="checkbox" value="true" id="flexCheckChecked" checked>
+                        <label class="form-check-label" for="flexCheckChecked">Estado</label>
+                    </div>
+                </div>
+                
+                <!-- Código -->
+                <div class="col-md-auto">
+                    <label for="code" class="form-label">Código</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                        <input class="form-control" type="text" name="code" id="code" placeholder="Ej. ABC123" required>
+                    </div>
+                </div>
+
+                <!-- Stock -->
+                <div class="col-md-auto">
+                    <label for="stock" class="form-label">Stock</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-box"></i></span>
+                        <input class="form-control" type="number" name="stock" id="stock" placeholder="Ej. 20" required>
+                    </div>
+                </div>
+
+                <!-- Imagen (URL) -->
+                <div class="col-md-auto">
+                    <label for="thumbnail" class="form-label">Imagen (URL)</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-image"></i></span>
+                        <input class="form-control" type="text" name="thumbnail" id="thumbnail" placeholder="Ej. https://ejemplo.com/image.jpg" required>
+                    </div>
+                </div>
+
+                <!-- Categoría -->
+                <!--<div class="col-md-auto">
+                    <label for="category" class="form-label">Categoría</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-grid"></i></span>
+                        <input class="form-control" type="text" name="category" id="category" placeholder="Ej. Electrónicos" required>
+                    </div>
+                </div>
+                -->
+
+                <!-- Botón Registrar -->
+                <div class="col-12 mt-4">
+                    <button class="btn btn-info" type="submit" id="add-btn">Registrar </button>
+                </div>
+
+            </div>
+            
+            <div>
+                <h2 class="mt-4">Eliminar Producto:</h2>
+
+                <!-- ID del Producto a Eliminar -->
+                <div class="col-md-6">
+                    <label for="id-prod" class="form-label">ID del Producto</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-trash"></i></span>
+                        <input class="form-control" type="number" name="id-prod" id="id-prod" placeholder="Ej. 123">
+                    </div>
+                </div>
+
+                <!-- Botón Eliminar -->
+                <div class="col-12 mt-4">
+                    <button class="btn btn-danger" type="button" id="deletebtn">Eliminar</button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+
+    <!-- Inclusión de Socket.IO desde el servidor -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="/js/realtimeproducts.js"></script>
+</div>
