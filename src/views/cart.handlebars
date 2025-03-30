@@ -1,0 +1,40 @@
+<div class="section">
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-4">Mi Carrito</h1>
+        <div >
+            <button class="btn btn-danger ml-2 mb-4 vaciar-carrito" >Vaciar Carrito</button>
+        </div>
+        <!--<ul class="box is-flex is-justify-content-space-between is-align-content-center is-flex-wrap-wrap">-->
+            {{#if payload.length}}
+                    <!--<strong class="total">Total: {{total}}</strong>-->
+                {{#each payload}}
+                <div class="mb-2 row row-cols-sm-6 border-bottom border-secondary">
+                    <!--<li class="box is-flex is-justify-content-space-between is-align-content-center is-flex-wrap-wrap">-->
+                        <div><img src={{this.product.thumbnail}} alt={{this.product.title}} class="img-thumbnail h-0 w-25"></div>
+                        <div>{{this.product.title}}</div>
+                        <div><strong>Precio:</strong> ${{this.product.price}}</div>
+                        <div><strong>Cantidad:</strong> {{this.quantity}}</div>
+                        <div><strong>Importe:</strong> ${{multiply this.quantity this.product.price}}</div>
+                        <div class="d-flex flex-row">
+                            <div><input class="form-control" id = "input-cantidad-{{this.product._id}}"  type="number" min="1" name="inputnuevacantidad" value = 1></div>
+                            <div class="ms-2 "><button class="btn btn-danger mb-4 nueva-cantidad" data-product-id="{{this.product._id}}" >Aplicar</button></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-success ml-2 mb-4 eliminar-producto" data-product-id="{{this.product._id}}" >Eliminar</button>
+                        </div>
+
+                    <!--</li>-->
+                </div>
+                {{/each}}
+            {{else}}
+                <p>El carrito está vacío.</p>
+            {{/if}}
+        <!--</ul>-->
+        <div >
+            <a href="/products/" class="btn btn-primary ml-2 mb-4">Volver a productos</a>
+        </div>
+    </div>
+</div>
+<script src="/js/deleteToCart.js"></script>
+<script src="/js/updateCart.js"></script>

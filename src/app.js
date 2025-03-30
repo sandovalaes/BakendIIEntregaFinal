@@ -24,7 +24,13 @@ const __dirname = path.dirname(__filename);
 
 // Configuración de handlebars
 const app = express();
-app.engine("handlebars", exphbs.engine());
+const hbs = exphbs.create({
+    helpers: {
+        multiply: (a, b) => a * b  // Helper para multiplicar
+    }
+});
+
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
@@ -33,9 +39,10 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Rutas
+app.use("/", viewsRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
-app.use("/", viewsRouter);
+
 
 // Configuración del puerto
 const PORT = 8081;

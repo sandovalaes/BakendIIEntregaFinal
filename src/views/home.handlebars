@@ -1,22 +1,19 @@
 
 <div class="container mt-5">
     <a href="http://localhost:8081/" class="btn btn-info">Volver al inicio</a>
+    <a href="http://localhost:8081/api/carts/67e86f2102e7bb4548da390f" class="btn btn-info">Mi Carrito</a>
     <h1 class="text-center mb-4">NUESTROS PRODUCTOS</h1>
 
     <div class="mb-4 col-md-6 d-flex flex-row">
         <select name="selector_categorias" class = "form-select" id= "Categorias">
-            <option value="Todos">Todos</option>
-            <option value="Frescos">Frescos</option>
-            <option value="Bebidas">Bebidas</option>
-            <option value="Limpieza">Limpieza</option>
-            <option value="Galletitas y Cereales">Galletitas y Cereales</option>
-            <option value="Aceites y Aderezos">Aceites y Aderezos</option>
-            <option value="Infusiones y Endulzantes">Infusiones y Endulzantes</option>
+            {{#each miscategorias}}
+            <option value="{{this.category}}" {{#if this.selected }} selected {{/if}} >{{this.category}}</option>
+            {{/each}}
         </select>
 
         <select name="selector_orden" class = "ms-2 form-select" id= "Ordenamiento">
-            <option value="Ascendente">Ascendente</option>
-            <option value="Descendiente">Descendiente</option>
+            <option value="Ascendente" {{#if ascendenteon }} selected {{/if}}>Ascendente</option>
+            <option value="Descendente" {{#if descendenteon }} selected {{/if}}>Descendente</option>
         </select>
 
         <a href="http://localhost:8081/products" class="ms-2 btn btn-danger" id="bttFiltrar">Filtrar</a>
@@ -41,6 +38,7 @@
                         <li><i class="bi bi-box"></i> Stock: {{this.stock}}</li>
                     </ul>
                     <button class="btn btn-primary mb-4" onclick = "addToCart('{{this.id}}')" >Agregar al carrito</button>
+                    <a href="http://localhost:8081/products/{{this.id}}" class="btn btn-primary ml-2 mb-4">Ver</a>
                 </div>
             </div>
         </div>

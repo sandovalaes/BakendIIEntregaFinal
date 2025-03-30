@@ -1,6 +1,5 @@
 import {Router} from "express";
-import {productManager} from "../app.js";
-import productModel from '../models/product.model.js'
+import productModel from '../models/product.model.js';
 
 const viewsRouter = Router();
 
@@ -11,6 +10,10 @@ viewsRouter.get('/', (req, res) => {
             { name: 'RTP (RealTimeProducts)', link: '/realtimeproducts' }
         ]
     });
+});
+
+viewsRouter.get('/realtimeproducts', (req, res) => {
+    res.render('realtimeproducts');
 });
 
 viewsRouter.get("/products",async (req,res)=>{
@@ -39,15 +42,21 @@ viewsRouter.get("/products",async (req,res)=>{
         console.log(options)
         console.log(filter)
 
+        let miscategorias = [];
+        miscategorias.push({category : "Todos", selected : query == "Todos"? true : false});
+        miscategorias.push({category : "Frescos", selected : query == "Frescos"? true : false});
+        miscategorias.push({category : "Bebidas", selected : query == "Bebidas"? true : false});
+        miscategorias.push({category : "Limpieza", selected : query == "Limpieza"? true : false});
+        miscategorias.push({category : "Galletitas y Cereales",  selected : query == "Galletitas y Cereales"? true : false});
+        miscategorias.push({category : "Aceites y Aderezos", selected : query == "Aceites y Aderezos"? true : false});
+        miscategorias.push({category : "Infusiones y Endulzantes", selected : query == "Infusiones y Endulzantes"? true : false});
+
         let result = await productModel.paginate( filter, options);
 
         const { totalPages, prevPage, nextPage, page: currentPage, hasPrevPage, hasNextPage } = result;
         const prevLink = hasPrevPage ? `${req.baseUrl}/products/?limit=${limit}&page=${prevPage}&sort=${sort}&query=${query}` : null;
         const nextLink = hasNextPage ? `${req.baseUrl}/products/?limit=${limit}&page=${nextPage}&sort=${sort}&query=${query}` : null;
-        console.log(`${req.baseUrl}`);
-        console.log(nextLink);
-        console.log(hasNextPage);
-        
+
         res.render('home',{
             result :"success", 
             payload: result.docs,  
@@ -59,8 +68,10 @@ viewsRouter.get("/products",async (req,res)=>{
             hasNextPage: hasNextPage,
             prevLink: prevLink,
             nextLink: nextLink,
-            sort: sort,
-            filtro: query
+            ascendenteon: sort === 'asc' ? true : false,
+            descendenteon: sort === 'desc' ? true : false,
+            filtroCategoria: query,
+            miscategorias
         })
     }catch(error){
         console.error(error)
@@ -68,8 +79,19 @@ viewsRouter.get("/products",async (req,res)=>{
     }
 })
 
-viewsRouter.get('/realtimeproducts', (req, res) => {
-    res.render('realtimeproducts');
-});
+viewsRouter.get('/products/:pid', async (req, res)=>{
+    try{
+        let pid = req.params.pid;
+        const product = await productModel.findOne({_id : pid}).lean();
+
+        if (!product) return res.status(404).json({message: "Producto no encontrado!"})
+        
+        console.log(product);
+        
+        res.render('viewproduct',{result :"success", payload: product })
+    }catch{
+        return res.status(500).json({message :'Error al intentar obtener el producto.'})
+    }
+})
 
 export {viewsRouter}; 

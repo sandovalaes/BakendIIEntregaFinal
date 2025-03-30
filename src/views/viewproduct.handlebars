@@ -1,0 +1,28 @@
+<div class="section">
+    <div class="container mt-5">
+        <a href="http://localhost:8081/api/carts/67e86f2102e7bb4548da390f" class="btn btn-info">Mi Carrito</a>
+        <h1 class="text-center display-4 ">Descripcion de Producto</h1>
+        <!--<ul class="box is-flex is-justify-content-space-between is-align-content-center is-flex-wrap-wrap">-->
+                    <!--<strong class="total">Total: {{total}}</strong>-->      
+                <div class="d-flex justify-content-center">
+                    <div  class="d-flex flex-row justify-content-center">
+                    <!--<li class="box is-flex is-justify-content-space-between is-align-content-center is-flex-wrap-wrap">-->
+                        <div><img src={{payload.thumbnail}} alt={{payload.title}} class="img-thumbnail h-75 w-75"></div>
+                        <div class="border rounded border-3 h-75 w-75">
+                            <span class="display-6 ms-2">{{payload.title}}</span>
+                            <div class="ms-2 lead">{{payload.description}}</div>
+                            <div class="ms-2 lead">{{payload.category}}</div>
+                            <div class="ms-2 lead display-6">${{payload.price}}</div>
+                            <div class="ms-2 text-primary">Ver los medios de pago</div>
+                            <div class="ms-2 text-success">Envío Gratis</div>
+                            <button class="btn btn-primary ms-2" onclick = "addToCart('{{payload._id}}')" >Agregar al carrito</button>
+                        </div>
+                    </div>    
+                </div>
+        <div >
+            <a href="/products/" class="btn btn-info ml-2 mb-4">Volver a productos</a>
+        </div>
+    </div>
+</div>
+
+<script src="/js/addToCart.js"></script>
