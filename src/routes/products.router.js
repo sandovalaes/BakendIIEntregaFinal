@@ -1,9 +1,9 @@
-import Router from "express";
+import {Router} from "express";
 import productModel from '../models/product.model.js';
 
 const productsRouter = Router();
 
-productsRouter.get("/views",async (req,res)=>{
+productsRouter.get("/",async (req,res)=>{
     try{
         console.log("Consultanto productos")
         let { limit, page, sort, query } = req.query;
@@ -28,6 +28,7 @@ productsRouter.get("/views",async (req,res)=>{
 
         console.log(options)
         console.log(filter)
+        console.log(page)
 
         let miscategorias = [];
         miscategorias.push({category : "Todos", selected : query == "Todos"? true : false});
@@ -41,8 +42,9 @@ productsRouter.get("/views",async (req,res)=>{
         let result = await productModel.paginate( filter, options);
 
         const { totalPages, prevPage, nextPage, page: currentPage, hasPrevPage, hasNextPage } = result;
-        const prevLink = hasPrevPage ? `${req.baseUrl}/products/?limit=${limit}&page=${prevPage}&sort=${sort}&query=${query}` : null;
-        const nextLink = hasNextPage ? `${req.baseUrl}/products/?limit=${limit}&page=${nextPage}&sort=${sort}&query=${query}` : null;
+
+        const prevLink = hasPrevPage ? `${req.baseUrl}/?limit=${limit}&page=${prevPage}&sort=${sort}&query=${query}` : null;
+        const nextLink = hasNextPage ? `${req.baseUrl}/?limit=${limit}&page=${nextPage}&sort=${sort}&query=${query}` : null;
 
         res.render('home',{
             result :"success", 
@@ -69,7 +71,7 @@ productsRouter.get("/views",async (req,res)=>{
 productsRouter.get('/:pid', async (req, res)=>{
     try{
         let pid = req.params.pid;
-        const product = await productModel.findOne({_id : pid})
+        const product = await productModel.findOne({_id : pid}).lean();
 
         if (!product) return res.status(404).json({message: "Producto no encontrado!"})
         

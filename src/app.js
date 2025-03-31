@@ -43,7 +43,6 @@ app.use("/", viewsRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 
-
 // Configuración del puerto
 const PORT = 8081;
 

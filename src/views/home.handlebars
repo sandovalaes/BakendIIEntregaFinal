@@ -16,7 +16,7 @@
             <option value="Descendente" {{#if descendenteon }} selected {{/if}}>Descendente</option>
         </select>
 
-        <a href="http://localhost:8081/products" class="ms-2 btn btn-danger" id="bttFiltrar">Filtrar</a>
+        <a href="http://localhost:8081/api/products" class="ms-2 btn btn-danger" id="bttFiltrar">Filtrar</a>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
@@ -38,7 +38,7 @@
                         <li><i class="bi bi-box"></i> Stock: {{this.stock}}</li>
                     </ul>
                     <button class="btn btn-primary mb-4" onclick = "addToCart('{{this.id}}')" >Agregar al carrito</button>
-                    <a href="http://localhost:8081/products/{{this.id}}" class="btn btn-primary ml-2 mb-4">Ver</a>
+                    <a href="http://localhost:8081/api/products/{{this.id}}" class="btn btn-primary ml-2 mb-4">Ver</a>
                 </div>
             </div>
         </div>
@@ -64,13 +64,13 @@
         let seleccionadoCate = categorias.value == "Todos"? '' : categorias.value ;
         let seleccionadoOrden = ordenamiento.value == "Ascendente"? "asc" : "desc";
         const botonFiltrar = document.querySelector('#bttFiltrar');
-        botonFiltrar.href = "http://localhost:8081/products/" + "?limit=10&page=&sort=" + seleccionadoOrden+ "&query=" + seleccionadoCate;
+        botonFiltrar.href = "http://localhost:8081/api/products/" + "?limit=10&page=&sort=" + seleccionadoOrden+ "&query=" + seleccionadoCate;
     });
 
     ordenamiento.addEventListener('change', () => {
         let seleccionadoCate = categorias.value == "Todos"? '' : categorias.value ;
         let seleccionadoOrden = ordenamiento.value == "Ascendente"? "asc" : "desc";
         const botonFiltrar = document.querySelector('#bttFiltrar');
-        botonFiltrar.href = "http://localhost:8081/products/" + "?limit=10&page=&sort=" + seleccionadoOrden+ "&query=" + seleccionadoCate;
+        botonFiltrar.href = "http://localhost:8081/api/products/" + "?limit=10&page=&sort=" + seleccionadoOrden+ "&query=" + seleccionadoCate;
     });
 </script>
