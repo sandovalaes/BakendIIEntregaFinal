@@ -1,9 +1,10 @@
 import {Router} from "express";
 import cartModel from '../models/cart.model.js'
+import passport from "passport";
 
 const cartsRouter = Router();
 
-cartsRouter.get("/:cid",async (req,res)=>{
+cartsRouter.get("/:cid", passport.authenticate("jwt",{session: false}), async (req,res)=>{
     try{
         let idCart = req.params.cid
         const cart = await cartModel.findOne({_id : idCart}).populate("products.product").lean();

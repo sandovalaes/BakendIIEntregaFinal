@@ -2,10 +2,14 @@ import path from 'path';
 import express from "express";
 import exphbs from 'express-handlebars';
 import mongoose from "mongoose";
+import passport from 'passport';
+import cookieParser from 'cookie-parser';
 import { Server } from "socket.io";
 import { fileURLToPath } from 'url';
+import initiallizerPassport from "./config/passport.config.js"
 
 // Importar las rutas
+import {sessionsRouter} from "./routes/sessions.router.js";
 import {productsRouter} from "./routes/products.router.js";
 import {cartsRouter} from "./routes/carts.router.js";
 import {viewsRouter} from "./routes/views.router.js";
@@ -35,13 +39,20 @@ app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
 // Middleware
+app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Rutas
 app.use("/", viewsRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
+app.use("/api/sessions", sessionsRouter);
+
+//Passport
+initiallizerPassport();
+app.use(passport.initialize());
 
 // Configuración del puerto
 const PORT = 8081;
@@ -55,7 +66,7 @@ const httpServer = app.listen(PORT, () => {
 //    console.log(`Servidor corriendo sobre el puerto ${PORT}`)
 //})
 
-mongoose.connect('mongodb+srv://sandovalaes:Pepito25**@cluster0.0uaahtr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://sandovalaes:Pepito25**@cluster0.0uaahtr.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0')
 .then(() => console.log('Database connected!')) .catch(err => console.log(err));
 
 // Configuración de socket.io

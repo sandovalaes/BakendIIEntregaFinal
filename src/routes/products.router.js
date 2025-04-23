@@ -1,9 +1,10 @@
 import {Router} from "express";
 import productModel from '../models/product.model.js';
+import passport from "passport";
 
 const productsRouter = Router();
 
-productsRouter.get("/",async (req,res)=>{
+productsRouter.get("/", passport.authenticate("jwt",{session: false}) , async (req,res)=>{
     try{
         console.log("Consultanto productos")
         let { limit, page, sort, query } = req.query;
@@ -46,6 +47,8 @@ productsRouter.get("/",async (req,res)=>{
         const prevLink = hasPrevPage ? `${req.baseUrl}/?limit=${limit}&page=${prevPage}&sort=${sort}&query=${query}` : null;
         const nextLink = hasNextPage ? `${req.baseUrl}/?limit=${limit}&page=${nextPage}&sort=${sort}&query=${query}` : null;
 
+        console.log(result.docs);
+
         res.render('home',{
             result :"success", 
             payload: result.docs,  
@@ -68,7 +71,7 @@ productsRouter.get("/",async (req,res)=>{
     }
 })
 
-productsRouter.get('/:pid', async (req, res)=>{
+productsRouter.get('/:pid', passport.authenticate("jwt",{session: false}), async (req, res)=>{
     try{
         let pid = req.params.pid;
         const product = await productModel.findOne({_id : pid}).lean();
