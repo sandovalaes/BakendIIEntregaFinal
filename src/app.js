@@ -39,6 +39,7 @@ app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
 // Middleware
+console.log(__dirname);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,9 +47,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Rutas
 app.use("/", viewsRouter);
-app.use("/api/products", productsRouter);
-app.use("/api/carts", cartsRouter);
-app.use("/api/sessions", sessionsRouter);
+app.use("/products", productsRouter);
+app.use("/carts", cartsRouter);
+app.use("/sessions", sessionsRouter);
 
 //Passport
 initiallizerPassport();

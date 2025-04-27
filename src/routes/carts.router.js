@@ -10,13 +10,13 @@ cartsRouter.get("/:cid", passport.authenticate("jwt",{session: false}), async (r
         const cart = await cartModel.findOne({_id : idCart}).populate("products.product").lean();
         if (!cart) return res.status(404).json({error: "Carrito no encontrado!"})
         console.log(cart.products)
-        res.render('cart',{result :"success", payload: cart.products}) 
+        res.render('cart',{result :"success", cartId: idCart, payload: cart.products}) 
     }catch(error){
         return res.status(500).json({message:"Error al consultar el carrito solicitado."}) 
     }
 })
 
-cartsRouter.put('/:cid/products/:pid', async(req, res)=>{
+cartsRouter.put('/:cid/products/:pid', passport.authenticate("jwt",{session: false}), async(req, res)=>{
     try{
         const idCart = req.params.cid
         const idProduct = req.params.pid
@@ -46,7 +46,7 @@ cartsRouter.put('/:cid/products/:pid', async(req, res)=>{
 })
 
 
-cartsRouter.delete('/:cid/products/:pid', async(req, res)=>{
+cartsRouter.delete('/:cid/products/:pid', passport.authenticate("jwt",{session: false}), async(req, res)=>{
     try{
         const idCart = req.params.cid
         const idProduct = req.params.pid
@@ -71,7 +71,7 @@ cartsRouter.delete('/:cid/products/:pid', async(req, res)=>{
 })
 
 
-cartsRouter.delete('/:cid', async(req, res)=>{
+cartsRouter.delete('/:cid', passport.authenticate("jwt",{session: false}), async(req, res)=>{
     try{
         const idCart = req.params.cid
         const cart = await cartModel.findOne({_id: idCart})
@@ -90,11 +90,13 @@ cartsRouter.delete('/:cid', async(req, res)=>{
     }
 })
 
-cartsRouter.post('/:cid/products/:pid', async (req, res) => {
+cartsRouter.post('/:cid/products/:pid', passport.authenticate("jwt",{session: false}), async (req, res) => {
     try {
         const { cid, pid } = req.params;
 
-        const cart = await cartModel.findById(cid);
+        const cidv2 = req.cookies['EcommerceCart'];
+
+        const cart = await cartModel.findById(cidv2);
         if (!cart) {
             return res.status(404).json({ error: 'Carrito no encontrado' });
         }

@@ -9,10 +9,8 @@ const sessionsRouter = Router();
 
 sessionsRouter.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    console.log(email, password)
     try {
         const user = await userModel.findOne({ email });
-        console.log(user)
         if (!user) return res.status(404).send('Usuario no encontrado');
 
         if (!isValidPassword(user,password)) return res.status(404).send('Clave erronea.');
@@ -20,8 +18,8 @@ sessionsRouter.post('/login', async (req, res) => {
         let token = generateToken(user);
 
         res.cookie("EcommerceCookieToken",token,{maxAge:60*60*1000});//.send({message: "Login!"});
-        res.redirect('/api/products');
-
+        res.cookie("EcommerceCart",user.cart,{maxAge:60*60*1000});
+        res.redirect('/products');
     } catch (err) {
         res.status(500).send('Error al iniciar sesión');
     }

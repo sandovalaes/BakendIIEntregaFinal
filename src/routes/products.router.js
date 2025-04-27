@@ -8,6 +8,8 @@ productsRouter.get("/", passport.authenticate("jwt",{session: false}) , async (r
     try{
         console.log("Consultanto productos")
         let { limit, page, sort, query } = req.query;
+        let cartId =  req.cookies['EcommerceCart'];
+        console.log(cartId);
         limit = parseInt(limit) || 10;
         page = parseInt(page) || 1;
         sort = sort || '';
@@ -63,7 +65,8 @@ productsRouter.get("/", passport.authenticate("jwt",{session: false}) , async (r
             ascendenteon: sort === 'asc' ? true : false,
             descendenteon: sort === 'desc' ? true : false,
             filtroCategoria: query,
-            miscategorias
+            miscategorias,
+            cartId
         })
     }catch(error){
         console.error(error)
@@ -74,11 +77,12 @@ productsRouter.get("/", passport.authenticate("jwt",{session: false}) , async (r
 productsRouter.get('/:pid', passport.authenticate("jwt",{session: false}), async (req, res)=>{
     try{
         let pid = req.params.pid;
+        let cardId =  req.cookies['EcommerceCart'];
         const product = await productModel.findOne({_id : pid}).lean();
 
         if (!product) return res.status(404).json({message: "Producto no encontrado!"})
         
-        res.render('viewproduct',{result :"success", payload: product })
+        res.render('viewproduct',{result :"success", cardId, payload: product })
     }catch{
         return res.status(500).json({message :'Error al intentar obtener el producto.'})
     }

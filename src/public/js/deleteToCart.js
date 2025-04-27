@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const cartId = document.getElementById('cartId').value // Obtener el ID del carrito
     document.querySelectorAll('.eliminar-producto').forEach(button => {
         button.addEventListener('click', function() {
             const productId = button.getAttribute('data-product-id');
-            const cartId = '67e86f2102e7bb4548da390f' // Obtener el ID del carrito
             console.log('Product ID:', productId);
             console.log('Cart ID:', cartId);
             eliminarProductoDelCarrito(cartId, productId);
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.vaciar-carrito').forEach(button => {
         button.addEventListener('click', function() {
-            const cartId = '67e86f2102e7bb4548da390f' // Obtener el ID del carrito
             console.log('Cart ID:', cartId);
             vaciarCarrito(cartId);
         });
@@ -19,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function eliminarProductoDelCarrito(cartId, productId) {
-    fetch(`/api/carts/${cartId}/products/${productId}`, {
+    fetch(`/carts/${cartId}/products/${productId}`, {
         method: 'DELETE'
     })
     .then(response => response.json())
@@ -35,7 +34,7 @@ function eliminarProductoDelCarrito(cartId, productId) {
 }
 
 function vaciarCarrito(cartId) {
-    fetch(`/api/carts/${cartId}`, {
+    fetch(`/carts/${cartId}`, {
         method: 'DELETE'
     })
     .then(response => response.json())

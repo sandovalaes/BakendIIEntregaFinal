@@ -1,11 +1,12 @@
-async function addToCart(pid) {
-    const cid = '67e86f2102e7bb4548da390f';
-    const url = `http://localhost:8081/api/carts/${cid}/products/${pid}`;
+async function addToCart(cid,pid) {
+    const cidv1 = '67e86f2102e7bb4548da390f';
+    const url = `http://localhost:8081/carts/${cid}/products/${pid}`;
+    console.log(cid);
     console.log(pid);
 
     try {
 
-        console.log("agregando")
+        console.log("agregando al carrito")
         const response = await fetch(url, {
             method: 'POST',
         });
