@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const cartId = document.getElementById('cartId').value;
     document.querySelectorAll('.nueva-cantidad').forEach(button => {
         button.addEventListener('click', function() {
             const productId = button.getAttribute('data-product-id');
-            const cartId = '67e86f2102e7bb4548da390f' // Obtener el ID del carrito
+            //const cartId = '67e86f2102e7bb4548da390f' // Obtener el ID del carrito
             const cantidad = document.getElementById("input-cantidad-" + productId).value;
             console.log(cantidad);
             console.log('Product ID:', productId);
@@ -15,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function actualizarProductoDelCarrito(cartId, productId, cantidad) {
     console.log("antes de actualizar");
     console.log(cantidad);
-    fetch(`/api/carts/${cartId}/products/${productId}`, {
+    const url = `http://localhost:8081/carts/${cartId}/products/${productId}`;
+    fetch(url, {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json"

@@ -1,0 +1,18 @@
+<div class="section">
+    <div class="container min-vh-75 d-flex justify-content-center align-items-center">
+        <div>
+            <div><h2 class="title has-text-centered mt-4">Cambiar clave</h2></div> 
+            <form class="d-flex flex-column justify-content-between" action="/sessions/confirmarcambioclave" method="POST">
+                <div class="mb-3">
+                    <label  class="form-label" for="email">Email:</label>
+                    <input  class="form-control" type="email" name="email" value="{{payload}}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label" for="password">Nueva Contraseña:</label>
+                    <input  class="form-control" type="password" name="password" required>
+                </div>
+                <button class="btn btn-primary" type="submit">Confirmar</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+import config from './config/config.js';
 import path from 'path';
 import express from "express";
 import exphbs from 'express-handlebars';
@@ -15,12 +16,12 @@ import {cartsRouter} from "./routes/carts.router.js";
 import {viewsRouter} from "./routes/views.router.js";
 
 // Importar la clase ProductManager y CartManager
-import { productsManager } from "./controllers/productManager.js";
-import { cartsManager } from "./controllers/cartManager.js";
+//import { productsManager } from "./controllers/productManager.js";
+//import { cartsManager } from "./controllers/cartManager.js";
 
 // Crear instancias de ProductManager y CartManager
-const productManager = new productsManager('./src/data/productos.json');
-const cartManager = new cartsManager('./src/data/carts.json');
+//const productManager = new productsManager('./src/data/productos.json');
+//const cartManager = new cartsManager('./src/data/carts.json');
 
 // Obtener la ruta del directorio actual
 const __filename = fileURLToPath(import.meta.url);
@@ -56,7 +57,7 @@ initiallizerPassport();
 app.use(passport.initialize());
 
 // Configuración del puerto
-const PORT = 8081;
+const PORT = config.port;
 
 // Iniciar el servidor
 const httpServer = app.listen(PORT, () => {
@@ -67,12 +68,13 @@ const httpServer = app.listen(PORT, () => {
 //    console.log(`Servidor corriendo sobre el puerto ${PORT}`)
 //})
 
-mongoose.connect('mongodb+srv://sandovalaes:Pepito25**@cluster0.0uaahtr.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(config.mongo_url)
 .then(() => console.log('Database connected!')) .catch(err => console.log(err));
 
 // Configuración de socket.io
 const io = new Server(httpServer);
 
+/*
 io.on("connection", async (socket) => {
     console.log("Un cliente se conectó");
 
@@ -93,3 +95,4 @@ io.on("connection", async (socket) => {
 });
 
 export { productManager, cartManager };
+*/

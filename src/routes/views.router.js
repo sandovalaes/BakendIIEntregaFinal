@@ -31,6 +31,15 @@ viewsRouter.get('/register', (req, res) => {
     res.render('register');
 });
 
+viewsRouter.get('/recuperar', (req, res) => {
+    res.render('recuperar');
+});
+
+viewsRouter.get('/cambiarclave/:email', (req, res) => {
+    const email = req.params.email;
+    res.render('cambiarclave',{result :"success", payload: email });
+});
+
 viewsRouter.get('/logout', (req, res) => {
     res.clearCookie('EcommerceCookieToken');
     res.render('login');

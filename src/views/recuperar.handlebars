@@ -1,0 +1,17 @@
+<div class="section">
+    <div class="container min-vh-75 d-flex justify-content-center align-items-center">
+        <div>
+            <div>
+                <div><h2 class="title has-text-centered mt-4">Recuperacion de Clave</h2></div>
+            </div>
+            <form class="d-flex flex-column justify-content-between" action="/sessions/recuperar" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="email">Ingrese correo electrónico:</label>
+                    <input class="form-control" type="email" name="email" required>
+                </div>
+                <button class="btn btn-primary" type="submit">Enviar email</button>
+            </form>
+            <div><a href="/login">Iniciar sesión</a></div>
+        </div>
+    </div>
+</div>
