@@ -16,10 +16,16 @@ async function addToCart(cid,pid) {
             console.log('Producto agregado al carrito:', data);
             alert('Producto agregado al carrito con éxito');
         } else {
-            throw new Error('Error al agregar el producto al carrito');
+            console.log(response);
+            console.log(response.status);
+            if (response.status === 403){
+                throw new Error('No autorizado.');
+            }else{
+                throw new Error('Error al agregar el producto al carrito');
+            }
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Hubo un error al agregar el producto al carrito');
+        alert(error);
     }
 }

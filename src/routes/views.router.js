@@ -9,7 +9,7 @@ viewsRouter.get('/', handlePolicies(["PUBLIC"]), renderindex);
 viewsRouter.get('/login', handlePolicies(["PUBLIC"]), renderlogin);
 viewsRouter.get('/register', handlePolicies(["PUBLIC"]), renderregister);
 viewsRouter.get('/recuperar', handlePolicies(["PUBLIC"]), renderrecuperar);
-viewsRouter.get('/cambiarclave/:email', rendercambiarclave);
+viewsRouter.get('/cambiarclave/:email', handlePolicies(["PUBLIC"]), rendercambiarclave);
 viewsRouter.get('/logout', handlePolicies(["PUBLIC"]), renderlogout);
 
 export {viewsRouter}; 

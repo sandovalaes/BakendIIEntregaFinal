@@ -7,7 +7,7 @@ const productsRouter = Router();
 
 productsRouter.get('/addproduct', passport.authenticate("jwt",{session: false}), handlePolicies(["ADMIN"]), addproduct);
 productsRouter.get('/deleteproduct', passport.authenticate("jwt",{session: false}), handlePolicies(["ADMIN"]), deleteproduct);
-productsRouter.get("/", passport.authenticate("jwt",{session: false}) , getProducts);
-productsRouter.get('/:pid', passport.authenticate("jwt",{session: false}), getProduct);
+productsRouter.get("/", passport.authenticate("jwt",{session: false}), handlePolicies(["USUARIO, ADMIN"]), getProducts);
+productsRouter.get('/:pid', passport.authenticate("jwt",{session: false}), handlePolicies(["USUARIO, ADMIN"]), getProduct);
 
 export {productsRouter};
