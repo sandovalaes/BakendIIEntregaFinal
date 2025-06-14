@@ -73,3 +73,20 @@ export const getProduct = async(req, res)=>{
         return res.status(500).json({message :'Error al intentar obtener el producto.'})
     }
 }
+
+export const addproduct = (req, res) => {
+    console.log("hola")
+    let miscategorias = [];
+        miscategorias.push({category : "Todos"});
+        miscategorias.push({category : "Frescos"});
+        miscategorias.push({category : "Bebidas"});
+        miscategorias.push({category : "Limpieza"});
+        miscategorias.push({category : "Galletitas y Cereales"});
+        miscategorias.push({category : "Aceites y Aderezos"});
+        miscategorias.push({category : "Infusiones y Endulzantes"});
+    res.render('addproduct',{miscategorias});
+}
+
+export const deleteproduct = (req, res) => {
+    res.render('deleteproduct');
+}
